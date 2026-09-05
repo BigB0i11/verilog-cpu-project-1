@@ -18,5 +18,4 @@ always @ (posedge clk) begin
 end
 
 assign rdata = dmem[addr];
-
 endmodule

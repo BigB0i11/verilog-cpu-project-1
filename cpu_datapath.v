@@ -1,14 +1,3 @@
-`include "PC_Reg.v"
-`include "next_PC.v"
-`include "register.v"
-`include "instr_mem.v"
-`include "i_gen.v"
-`include "ccu.v"
-`include "alu_ctrl.v"
-`include "alu.v"
-`include "data_mem.v"
-
-
 module toplvl_datapath(
     input clk,
     input rst
@@ -25,7 +14,7 @@ pc_reg pc (
     .next_pc(next_pc_val)
 );
 
-next_pc npc(
+next_pc_logic npc(
     .pc(pc_val),
     .imm(imm_gen),
     .branch(branch_ctl),
@@ -46,7 +35,7 @@ mem3port regfile(
     .rdata1(rs2)
 );
 
-instr_mem imem0(
+intr_mem imem0(
     .addr(pc_val[9:2]),
     .instr(instr_out)
 );
@@ -125,6 +114,8 @@ endfunction
 assign pc_plus_4 = pc_val + 4;
 assign alu_b = alu_b_mux(rs2, imm_gen, alu_src_ctl);
 assign write_data = write_mux(alr, imm_gen, rd1, pc_plus_4, jump_ctl, lui_sel_ctl, mem_to_reg_ctl);
+
+endmodule
 
 
 

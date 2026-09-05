@@ -1,5 +1,3 @@
-typedef enum logic [1:0] {ADD, SUB} alu_t;
-
 module ALU(
     input [31:0] a,
     input [31:0] b,
